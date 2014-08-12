@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Styles.Render("~/Content/Site.css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/Site.js")
+</head>
+<body>
+
+    <div class="container body-content">
+        <div class="site-header">
+            <img id="amazon-logo" src="http://www.lenco.com/wp-content/uploads/2012/01/Amazon-Logo.jpg" alt="amazon" />
+        </div>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><button id="search-button" type="button" name="search" onclick="QueryProducts()">Search</button></li>
+                        <li><input type="text" id="search-box" /></li>
+                        <li>
+                            <select id="category-select">
+                                @for (int i = 0, l = AmazonApp.Models.ProductCategories.Categories.Length; i < l; i++)
+                                {
+                                    <option value="@i">@AmazonApp.Models.ProductCategories.Categories[i]</option>
+                                }
+                            </select>
+                        </li>
+                        <li>
+                            <select id="quantity-select" title="Quantity">
+                                <option value="5">5</option>
+                                <option value="13">13</option>
+                                <option value="26">26</option>
+                                <option value="50">50</option>
+                            </select>
+                        </li>
+                        <li>
+                            <select id="currency-select" title="Currency">
+                                @foreach (KeyValuePair<string, string> item in AmazonApp.Models.FinanceData.GetCurrencies())
+                                {
+                                    <option value="@item.Key">@item.Value</option>
+                                }
+                            </select>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        @RenderBody()
+    </div>
+    <div id="footer-div">
+        <span id="paging"></span>
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+</body>
+</html>

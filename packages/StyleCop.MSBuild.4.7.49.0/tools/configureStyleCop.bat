@@ -1,0 +1,2 @@
+REM Open StyleCop Settings
+StyleCopSettingsEditor.exe Settings.StyleCop
